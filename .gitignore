@@ -1,0 +1,28 @@
+*.pyc
+.DS_Store
+.env
+__pycache__/
+Pipfile
+Pipfile.lock
+
+# editor
+.vscode/
+
+# data
+*.dump
+
+# npm
+node_modules/
+
+# Webpack
+
+# General
+/venv/
+/env/
+/output/
+/cache/
+
+
+.direnv
+.envrc
+.tool-versions
