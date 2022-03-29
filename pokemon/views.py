@@ -10,7 +10,7 @@ from .serializers import PokemonSerializer, UserSerializer
 def home(request):
     return HttpResponse('Pokemon API')
 
-class PokemonView(viewsets.ModelViewSet):
+class PokemonViewSet(viewsets.ModelViewSet):
     queryset = Pokemon.objects.all()
     serializer_class = PokemonSerializer
 

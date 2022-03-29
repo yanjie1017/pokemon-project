@@ -8,15 +8,19 @@ class LoginPage extends Component {
 
     }
 
+    userLogin = (token) => {
+
+    }
+
     render() {
         return (
-            <>
-                <h1>Login</h1>
-                <button>Login</button>
-                <button>Signup</button>
-                <LoginForm />
-                <SignupForm />
-            </>
+            <div className="login-page">
+                <h1>Pokemon</h1>
+                <div className="login-form">
+                    <LoginForm userLogin={this.userLogin}/>
+                    <SignupForm />
+                </div>
+            </div>
         );
     }
 }

@@ -17,28 +17,28 @@ class LoginForm extends Component {
     login = (e) => {
         e.preventDefault();
         console.log("Login");
-        console.log(this.state.credentials)
+        console.log(this.state.credentials);
         fetch('http://127.0.0.1:8000/auth/', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(this.state.credentials)
         }).then(
-            data => {
-                console.log(data);
+            response => {
+                this.props.userLogin(response.token);
             }
-        ).catch(error => console.error(error)) 
+        ).catch(error => console.error(error));
     }
 
     handleUsername = (value) => {
-        var credentials = {...this.state.credentials}
+        var credentials = {...this.state.credentials};
         credentials.username = value;
-        this.setState({credentials})
+        this.setState({credentials});
     }
 
     handlePassword = (value) => {
-        var credentials = {...this.state.credentials}
+        var credentials = {...this.state.credentials};
         credentials.password = value;
-        this.setState({credentials})
+        this.setState({credentials});
     }
 
     render() {
