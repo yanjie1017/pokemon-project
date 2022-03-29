@@ -5,7 +5,8 @@ module.exports = {
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "./static/frontend"),
-    filename: "[name].js",
+    filename: "main.js",
+    publicPath: 'static/frontend/',
   },
   module: {
     rules: [
@@ -18,6 +19,14 @@ module.exports = {
       },
     ],
   },
+  devServer: {
+    static: './static/frontend/',
+    hot: true,
+    devMiddleware: {
+        publicPath: './static/frontend/',
+        writeToDisk: true,
+     },    
+  },
   optimization: {
     minimize: true,
   },
@@ -25,8 +34,13 @@ module.exports = {
     new webpack.DefinePlugin({
       "process.env": {
         // This has effect on the react lib size
-        NODE_ENV: JSON.stringify("production"),
+        NODE_ENV: JSON.stringify("development"),
       },
     }),
   ],
+  resolve: {
+    fallback: {
+      util: require.resolve("util/")
+    }
+  }
 };

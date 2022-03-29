@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import LoginForm from "./LoginForm";
-import SignupForm from "./SignupForm";
+import LoginPage from "./LoginPage";
 
 class App extends Component {
     constructor(props) {
@@ -10,9 +9,10 @@ class App extends Component {
     render() {
         return (
             <>
-                <h1>{this.props.name}</h1>
-                <LoginForm />
-                <SignupForm />
+                <h1>
+                    React
+                </h1>
+                <LoginPage />
             </>
         );
     }

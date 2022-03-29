@@ -12,6 +12,7 @@ class FormInput extends Component {
                     type={this.props.type} 
                     placeholder={this.props.placeholder}
                     required
+                    onChange={(e) => this.props.onChange(e.target.value)}
                 />
             </div>
         );
