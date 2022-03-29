@@ -1,28 +1,27 @@
-import React, { Component } from "react";
+import React, { Component } from "react"
+import { useNavigate } from 'react-router-dom';
 import LoginForm from "./LoginForm"
 import SignupForm from "./SignupForm"
+import styles from "./LoginPage.css"
 
-class LoginPage extends Component {
-    constructor(props) {
-        super(props);
+export const LoginPage = () => {
+    let navigate = useNavigate();
 
+    const userLogin = (redirect, token) => {
+        if (redirect) {
+            navigate('/portfolio');
+        }  
     }
 
-    userLogin = (token) => {
-
-    }
-
-    render() {
-        return (
-            <div className="login-page">
-                <h1>Pokemon</h1>
-                <div className="login-form">
-                    <LoginForm userLogin={this.userLogin}/>
-                    <SignupForm />
-                </div>
+    return (
+        <div className={styles.loginPage}>
+            <h1 className={styles.h1}>Pokemon</h1>
+            <div className={styles.outerForm}>
+                <LoginForm userLogin={userLogin}/>
+                <SignupForm />
             </div>
-        );
-    }
+        </div>
+    );
 }
 
 export default LoginPage

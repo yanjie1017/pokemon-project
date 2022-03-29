@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import LoginPage from "./LoginPage";
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+  } from "react-router-dom";
+import LoginPage from './LoginPage'
+import HomePage from "./HomePage";
 
 class App extends Component {
     constructor(props) {
@@ -8,12 +14,16 @@ class App extends Component {
 
     render() {
         return (
-            <>
-                <h1>
-                    React
-                </h1>
-                <LoginPage />
-            </>
+            <Router>
+                <Routes>
+                    <Route exact path="/login"
+                        element={<LoginPage/>}
+                    />
+                    <Route path="/portfolio"
+                        element={<HomePage/>}
+                    />
+                </Routes>
+            </Router>
         );
     }
 }

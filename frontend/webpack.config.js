@@ -18,11 +18,23 @@ module.exports = {
         },
       },
       {
-        test: /\\.css$/,
+        test: /\.css$/,
+        // exclude: /node_modules/,
         use: [
-          "style-loader",
-          "css-loader"
-        ],
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: true
+            }
+          }
+        ]
+      },
+      {
+        test: /\.js$/,
+        enforce: 'pre',
+        use: ['source-map-loader'],
       },
     ],
   },

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import FormInput from "./FormInput";
+import styles from "./LoginPage.css"
 
 class SignupForm extends Component {
     constructor(props) {
@@ -10,7 +11,9 @@ class SignupForm extends Component {
                 username: '',
                 password: '',
             },
-            confirmPassword: false
+            confirmPassword: false,
+            signedUp: false,
+            buttonClicked: false,
         }
     }
 
@@ -18,12 +21,14 @@ class SignupForm extends Component {
         var credentials = {...this.state.credentials};
         credentials.username = value;
         this.setState({credentials: credentials});
+        this.setState({buttonClicked: false});
     }
 
     handlePassword = (value) => {
         var credentials = {...this.state.credentials};
         credentials.password = value;
         this.setState({credentials: credentials});
+        this.setState({buttonClicked: false});
     }
 
     confirmPassword = (value) => {
@@ -35,7 +40,6 @@ class SignupForm extends Component {
     signup = (e) => {
         e.preventDefault();
         console.log("Signup");
-        console.log(this.state.credentials);
         if (this.state.confirmPassword) {
             fetch('http://127.0.0.1:8000/api/user/', {
                 method: 'POST',
@@ -43,21 +47,27 @@ class SignupForm extends Component {
                 body: JSON.stringify(this.state.credentials)
             }).then(
                 response => {
-                    console.log(response);
-                    return response.text();
-                }
-            ).then (
-                text => {
-                    console.log(text)
+                    if (response.ok) {
+                        this.setState({signedUp: true})
+                    } 
                 }
             ).catch(error => console.error(error));
         } 
+        this.setState({buttonClicked: true})
+    }
+
+    response = () => {
+        if (!this.state.buttonClicked) return "";
+        else if (this.state.signedUp) return "You have signed up!";
+        else if (this.state.confirmPassword) return "Username exists.";
+        else return "Password incorrect.";
     }
 
     render() {
         return (
             <div>
-                <form onSubmit={this.signup}>
+                <form className={styles.loginForm} onSubmit={this.signup}>
+                    <h2 className={styles.h2}>Signup form</h2>
                     <FormInput 
                         type="text" 
                         placeholder="Username" 
@@ -74,10 +84,11 @@ class SignupForm extends Component {
                         onChange={this.confirmPassword}
                     />
                     <input 
-                        className="button submit-button" 
+                        className={styles.button} 
                         type="submit" 
                         value="Signup"
                     />
+                    <p className={styles.p}>{this.response()}</p>
                 </form>
             </div>
         );
