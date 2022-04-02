@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import FormInput from "./FormInput";
-import styles from "./LoginPage.css"
 
 class SignupForm extends Component {
     constructor(props) {
@@ -37,11 +36,10 @@ class SignupForm extends Component {
         this.setState({confirmPassword: confirmPassword});
     }
 
-    signup = (e) => {
+    signup = async(e) => {
         e.preventDefault();
-        console.log("Signup");
         if (this.state.confirmPassword) {
-            fetch('http://127.0.0.1:8000/api/user/', {
+            await fetch('http://127.0.0.1:8000/api/user/', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(this.state.credentials)
@@ -65,9 +63,9 @@ class SignupForm extends Component {
 
     render() {
         return (
-            <div>
-                <form className={styles.loginForm} onSubmit={this.signup}>
-                    <h2 className={styles.h2}>Signup form</h2>
+            <div className="innerForm">
+                <h1>Signup form</h1>
+                <form className="loginForm" onSubmit={this.signup}>    
                     <FormInput 
                         type="text" 
                         placeholder="Username" 
@@ -80,16 +78,16 @@ class SignupForm extends Component {
                     />
                     <FormInput 
                         type="password" 
-                        placeholder="Confirm password" 
+                        placeholder="Confirm password"
                         onChange={this.confirmPassword}
                     />
                     <input 
-                        className={styles.button} 
+                        className="button"
                         type="submit" 
                         value="Signup"
                     />
-                    <p className={styles.p}>{this.response()}</p>
                 </form>
+                <p className="formResponse">{this.response()}</p>
             </div>
         );
     }

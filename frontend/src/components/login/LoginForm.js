@@ -1,17 +1,18 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import FormInput from "./FormInput";
-import styles from "./LoginPage.css"
 
 class LoginForm extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
             credentials: {
                 username: '',
                 password: ''
             },
-            buttonClicked: false
+            buttonClicked: false,
+            redirect: false
         }
     }
 
@@ -29,22 +30,26 @@ class LoginForm extends Component {
         this.setState({buttonClicked: false});
     }
 
-    login = (e) => {
+    login = async(e) => {
         e.preventDefault();
-        console.log("Login");
-        fetch('http://127.0.0.1:8000/auth/', {
+        await fetch('http://127.0.0.1:8000/auth/', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(this.state.credentials)
         })
-        .then(
-            response => {
-                if (response.ok) {
-                    response = response.json()
-                    this.props.userLogin(true, response.token);
-                }
+        .then(response => response.json())
+        .then(response => {
+                this.setState({redirect: true});
+                this.props.navigate(
+                    true, 
+                    this.state.credentials.username, 
+                    response.token
+                );
             }
-        ).catch(error => console.error(error));
+        ).catch(error => {
+            this.setState({redirect: false});
+            console.error(error);
+        });
         this.setState({buttonClicked: true});
     }
 
@@ -55,9 +60,9 @@ class LoginForm extends Component {
 
     render() {
         return (
-            <div>
-                <form className={styles.loginForm} onSubmit={this.login}>
-                    <h2 className={styles.h2}>Login form</h2>
+            <div className="innerForm">
+                <h1>Login form</h1>
+                <form className="loginForm" onSubmit={this.login}>
                     <FormInput 
                         type="text" 
                         placeholder="Username" 
@@ -69,12 +74,12 @@ class LoginForm extends Component {
                         onChange={this.handlePassword}
                     />
                     <input 
-                        className={styles.button} 
+                        className="button" 
                         type="submit" 
                         value="Login"
                     />
-                    <p className={styles.p}>{this.response()}</p>
                 </form>
+                <p>{this.response()}</p>
             </div>
         );
     }

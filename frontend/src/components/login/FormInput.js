@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import styles from "./LoginPage.css"
 
 class FormInput extends Component {
     constructor(props) {
@@ -10,7 +9,7 @@ class FormInput extends Component {
         return (
             <div>
                 <input 
-                    className={styles.input}
+                    className="input"
                     type={this.props.type} 
                     placeholder={this.props.placeholder}
                     required

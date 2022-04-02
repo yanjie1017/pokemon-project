@@ -1,0 +1,214 @@
+:root {
+  --primary-color: #ecb602;
+  --light-color: rebeccapurple;
+  --dark-color: rgb(52, 11, 92);
+}
+
+.App {
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* navbar */
+.navbar {
+  position: relative;
+  height: 60px;
+  min-width: 100vw;
+  display: flex;
+  align-items: center;
+  background-color: var(--dark-color);
+}
+
+.right {
+  position: absolute;
+  top: 0%;
+  right: 1%;
+  display: flex;
+}
+
+.navbar p {
+  float: left;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--primary-color);
+  text-align: center;
+  margin: 0.7rem 1rem;
+}
+
+.navbar span {
+  float: left;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-align: center;
+  margin: 1.3rem 0.5rem;
+}
+
+.navbar .link {
+  float: left;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--primary-color);
+  text-align: center;
+  margin: 1.3rem 0.5rem;
+}
+
+/* Login Page */
+.loginPage {
+  position: fixed;
+  left: 0;
+  top: 0;
+  min-height: 100vh;
+  min-width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--light-color);
+  overflow: hidden;
+}
+
+.outerForm {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: var(--light-color);
+}
+
+.innerForm {
+  width: 370px;
+  min-height: max-content;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--dark-color);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  overflow: auto;
+}
+
+.innerForm h1 {
+  text-align: center;
+  font-size: 3rem;
+  color: var(--primary-color);
+}
+
+.innerForm p {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #ffcc24;
+  padding-bottom: 1rem;
+}
+
+.loginForm {
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+}
+
+.input {
+  font-size: 1.2rem;
+  min-width: 100%;
+  padding: 0.5rem 0.5rem;
+  margin: 0.5rem 0;
+  box-sizing: border-box;
+  background-color: var(--light-color);
+  border: none;
+}
+
+.input ::placeholder{
+  color: var(--primary-color);
+  opacity: 1;
+}
+
+.button {
+  background-color: var(--primary-color);
+  color: var(--dark-color);
+  display: inline-block;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 0.5rem 0.7rem;
+  margin: 1rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.button:hover {
+  background-color: #ffcc24;
+}
+
+
+/* Portfolio */
+.portfolio {
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--light-color);
+  overflow: auto;
+}
+
+.portfolio h1 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--primary-color);
+}
+
+.pokemonList {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.pokemon {
+  background-color: var(--primary-color);
+  color: var(--dark-color);
+  border: 3px solid var(--dark-color);
+  border-radius: 5px;
+  margin: 1rem 1rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.ownedPokemon {
+  position: relative;
+}
+
+.name {
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.pokemon div {
+  padding: 0.1rem 0.5rem;
+}
+
+.ownedPokemon button {
+  background-color: var(--dark-color);
+  border: none;
+  border-radius: 5px;
+  color: var(--primary-color);
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 0.3rem 0.5rem;
+  position: absolute;
+  top: 2%;
+  right: 5%;
+  transform: translate(0%, 50%);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  opacity: 0;
+}
+
+.ownedPokemon:hover button {
+  opacity: 1;
+  transform: translate(0, 0%);
+  z-index: 2;
+}
