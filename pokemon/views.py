@@ -21,14 +21,14 @@ class PokemonViewSet(viewsets.ModelViewSet):
     
     @action(methods=["GET"], detail=False)
     def list_unowned(self, request, *args, **kwargs):
-        user_id = request.data['owner']
+        user_id = kwargs['pk']
         queryset = self.get_queryset().exclude(owner=user_id)
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
 
     @action(methods=["GET"], detail=False)
     def list_owned(self, request, *args, **kwargs):
-        user_id = request.data['owner']
+        user_id = kwargs['pk']
         queryset = self.get_queryset().filter(owner=user_id)
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)

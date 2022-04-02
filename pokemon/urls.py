@@ -17,8 +17,8 @@ urlpatterns = [
     path('', include(router.urls)),
     path('pokemon/allpokemon', pokemon_list_all),
     path('pokemon/createpokemon', pokemon_create),
-    path('pokemon/unownedpokemon', pokemon_list_unowned),
-    path('pokemon/mypokemon', pokemon_list_owned),
+    path('pokemon/unownedpokemon/<int:pk>', pokemon_list_unowned),
+    path('pokemon/mypokemon/<int:pk>', pokemon_list_owned),
     path('pokemon/addpokemon', pokemon_add),
     path('pokemon/releasepokemon', pokemon_release)
 ]
