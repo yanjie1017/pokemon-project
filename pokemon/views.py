@@ -20,6 +20,12 @@ class PokemonViewSet(viewsets.ModelViewSet):
         return super().create(request, *args, **kwargs)
     
     @action(methods=["GET"], detail=False)
+    def list_not_captured(self, request, *args, **kwargs):
+        queryset = self.get_queryset().filter(owner__isnull=True)
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
+    @action(methods=["GET"], detail=False)
     def list_unowned(self, request, *args, **kwargs):
         user_id = kwargs['pk']
         queryset = self.get_queryset().exclude(owner=user_id)
@@ -56,3 +62,10 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
+    @action(methods=["GET"], detail=False)
+    def get_id(self, request, *args, **kwargs):
+        username = kwargs['pk']
+        print(username)
+        queryset = self.get_queryset().filter(username=username)
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
