@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import LoginPage from './pages/LoginPage';
 import Portfolio from './pages/Portfolio';
-import CatchPokemon from './pages/CatchPokemon';
+import CatchPokemonPage from './pages/CatchPokemonPage';
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
           element={<Portfolio/>}
         />
         <Route exact path="/catch-pokemon/:id"
-          element={<CatchPokemon/>}
+          element={<CatchPokemonPage/>}
         />
       </Routes>
     </Router>

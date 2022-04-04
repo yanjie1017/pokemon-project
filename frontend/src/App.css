@@ -83,6 +83,7 @@
   min-height: max-content;
   align-items: center;
   justify-content: center;
+  text-align: center;
   background-color: var(--dark-color);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   overflow: auto;
@@ -115,6 +116,7 @@
   margin: 0.5rem 0;
   box-sizing: border-box;
   background-color: var(--light-color);
+  color: var(--primary-color);
   border: none;
 }
 
@@ -126,7 +128,7 @@
 .button {
   background-color: var(--primary-color);
   color: var(--dark-color);
-  display: inline-block;
+  /* display: inline-block; */
   border: none;
   border-radius: 0.5rem;
   font-size: 1.5rem;
@@ -149,6 +151,7 @@
   justify-content: center;
   background-color: var(--light-color);
   overflow: auto;
+  padding: 0 0 2rem 0;
 }
 
 .portfolio h1 {
@@ -211,4 +214,58 @@
   opacity: 1;
   transform: translate(0, 0%);
   z-index: 2;
+}
+
+/* Catch Pokemon */
+.catchPokemon {
+  height: 100vh;
+  background-color: var(--light-color);
+  overflow: auto;
+}
+
+.catchContainer {
+  height: 90%;
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+}
+
+.catch {
+  width: 250px;
+  background-color: var(--dark-color);
+  padding: 3rem;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.game {
+  display: block;
+}
+
+.game input {
+  font-size: 2.5rem;
+  font-weight: 700;
+  font-size: 1.2rem;
+  padding: 0.7rem 0.5rem;
+  margin: 0 1rem;
+  box-sizing: border-box;
+  border-radius: 5px;
+  color: var(--primary-color);
+  background-color: var(--dark-color);
+  border: none;
+}
+
+.catchContainer h1 {
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.catchContainer p {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary-color);
 }
