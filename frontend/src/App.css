@@ -269,3 +269,7 @@
   font-weight: 700;
   color: var(--primary-color);
 }
+
+.game p {
+  font-size: 1.5rem;
+}

@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-import Pokemon from "./Pokemon";
 
 class MyPokemon extends Component {
     constructor(props) {
@@ -9,14 +8,13 @@ class MyPokemon extends Component {
     render() {
         return (
             <div className="ownedPokemon">
-                <Pokemon
-                    id={this.props.id}
-                    name={this.props.name}
-                    hp={this.props.hp}
-                    attack={this.props.attack}
-                    defense={this.props.defense}
-                    type={this.props.type}
-                />
+                <div className="pokemon">
+                    <div className="name">NAME: {this.props.name}</div>
+                    <div>HP: {this.props.hp}</div>
+                    <div>ATTACK: {this.props.attack}</div>
+                    <div>DEFENSE: {this.props.defense}</div>
+                    <div>TYPE: {this.props.type}</div>
+                </div>
                 <button onClick={() => this.props.onDelete(this.props.id)}>Release</button>
             </div>
         );

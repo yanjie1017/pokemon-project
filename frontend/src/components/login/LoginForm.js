@@ -75,7 +75,7 @@ class LoginForm extends Component {
                         value="Login"
                     />
                 </form>
-                <p>{this.state.buttonClicked && !this.state.redirect && "Incorrect username or password"}</p>
+                <p>{this.state.buttonClicked && !this.state.redirect && "Incorrect username or password."}</p>
             </div>
         );
     }

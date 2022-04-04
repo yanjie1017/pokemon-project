@@ -2,7 +2,7 @@ import React, { Component, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import Navbar from "../components/common/NavBar";
 import Game from "../components/game/Game";
-import PokemonList from "../components/pokemon/PokemonList";
+import MyPokemonList from "../components/pokemon/MyPokemonList";
 
 function CatchPokemonPage() {
 
@@ -50,7 +50,7 @@ function CatchPokemonPage() {
                 setResponse("Pokemon added successfully");
             }).catch(error => console.error(error));
         } else {
-            setResponse("Pokemon not added.\nPlease win the game first.");
+            setResponse("Pokemon not added. Please win the game first.");
         }
     }
 
@@ -63,7 +63,7 @@ function CatchPokemonPage() {
             <Navbar id={id}/>
             <div className="catchContainer">
                 <div className="catch">
-                    {pokemon ? <PokemonList pokemons={[pokemon]}/> : <h1>No Free Pokemon</h1>}
+                    {pokemon ? <MyPokemonList pokemons={[pokemon]}/> : <h1>No Free Pokemon</h1>}
                     {pokemon && 
                         <button className="button" onClick={() => addPokemon(pokemon.id)}>
                             Add
