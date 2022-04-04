@@ -52,6 +52,7 @@ class PokemonViewSet(viewsets.ModelViewSet):
     @action(methods=["POST"], detail=False)
     def release(self, request, *args, **kwargs):
         instance = self.queryset.get(pk=request.data['id'])
+        request.data['owner'] = None
         serializer = self.serializer_class(instance, data=request.data, partial=True)
         if serializer.is_valid():     
             serializer.save()
