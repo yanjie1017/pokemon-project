@@ -37,25 +37,21 @@ class LoginForm extends Component {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(this.state.credentials)
         })
-        .then(response => response.json())
         .then(response => {
-                this.setState({redirect: true});
-                this.props.navigate(
-                    true, 
-                    this.state.credentials.username, 
-                    response.token
-                );
+                const data = response.json();
+                if (response.ok) {
+                    this.setState({redirect: true});
+                    this.props.navigate(
+                        true, 
+                        this.state.credentials.username, 
+                        data.token
+                    );
+                } else {
+                    this.setState({redirect: false});
+                }
             }
-        ).catch(error => {
-            this.setState({redirect: false});
-            console.error(error);
-        });
+        ).catch(error => console.error(error));
         this.setState({buttonClicked: true});
-    }
-
-    response = () => {
-        if (!this.state.buttonClicked) return "";
-        else if (!this.state.redirect) return "Incorrect username or password";
     }
 
     render() {
@@ -79,7 +75,7 @@ class LoginForm extends Component {
                         value="Login"
                     />
                 </form>
-                <p>{this.response()}</p>
+                <p>{this.state.buttonClicked && !this.state.redirect && "Incorrect username or password"}</p>
             </div>
         );
     }

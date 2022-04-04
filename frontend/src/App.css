@@ -98,7 +98,7 @@
 .innerForm p {
   text-align: center;
   font-size: 1.2rem;
-  color: #ffcc24;
+  color: var(--primary-color);
   padding-bottom: 1rem;
 }
 

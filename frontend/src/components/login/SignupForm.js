@@ -11,8 +11,7 @@ class SignupForm extends Component {
                 password: '',
             },
             confirmPassword: false,
-            signedUp: false,
-            buttonClicked: false,
+            response: ''
         }
     }
 
@@ -20,20 +19,21 @@ class SignupForm extends Component {
         var credentials = {...this.state.credentials};
         credentials.username = value;
         this.setState({credentials: credentials});
-        this.setState({buttonClicked: false});
+        this.setState({response: ''});
     }
 
     handlePassword = (value) => {
         var credentials = {...this.state.credentials};
         credentials.password = value;
         this.setState({credentials: credentials});
-        this.setState({buttonClicked: false});
+        this.setState({response: ''});
     }
 
     confirmPassword = (value) => {
         const password = this.state.credentials.password;
-        var confirmPassword = value === password;
+        var confirmPassword = (value === password);
         this.setState({confirmPassword: confirmPassword});
+        this.setState({response: ''});
     }
 
     signup = async(e) => {
@@ -43,22 +43,17 @@ class SignupForm extends Component {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(this.state.credentials)
-            }).then(
-                response => {
+            }).then(response => {
                     if (response.ok) {
-                        this.setState({signedUp: true})
-                    } 
+                        this.setState({response: "You have signed up!"});
+                    } else {
+                        this.setState({response: "Username exists."});
+                    }
                 }
             ).catch(error => console.error(error));
-        } 
-        this.setState({buttonClicked: true})
-    }
-
-    response = () => {
-        if (!this.state.buttonClicked) return "";
-        else if (this.state.signedUp) return "You have signed up!";
-        else if (this.state.confirmPassword) return "Username exists.";
-        else return "Password incorrect.";
+        } else {
+            this.setState({response: "Password incorrect."});
+        }
     }
 
     render() {
@@ -87,7 +82,7 @@ class SignupForm extends Component {
                         value="Signup"
                     />
                 </form>
-                <p className="formResponse">{this.response()}</p>
+                <p className="formResponse">{this.state.response}</p>
             </div>
         );
     }
