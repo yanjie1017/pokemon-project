@@ -1,5 +1,7 @@
 # Pokemon Project
 
+A full stack web application that allows users to view their captured pokemons and catch unowned pokemon by winning a simple game.
+
 ## Login Page
 ![](docs/login/LoginPage.png)
 
